@@ -1,5 +1,4 @@
 UiManager uiManager;
-UiHand uiHand;
 
 class Game{
   
@@ -13,7 +12,16 @@ class Game{
     println("starting game");
 //    test1();
     Pack pack = new Pack();
+    UiHand uiHand;
     uiHand = new UiHand(width / 2, height - 150, pack);
+    PlayerManager playerManager = new PlayerManager();
+    playerManager.getPlayers().add(new Player(1, "Player1"));
+    playerManager.getPlayers().add(new Player(2, "Player2"));
+    playerManager.getPlayers().add(new Player(3, "Player3"));
+    playerManager.addSelf(new Player(4, "Player4", true));
+    UiPlayers uiPlayers = new UiPlayers(width / 2, 100, playerManager);
+    
+    uiPlayers.updateSize();
     
     pack.getCards().add(new Card(1, 1));
     pack.getCards().add(new Card(3, 13));
@@ -23,6 +31,7 @@ class Game{
     
     uiManager = new UiManager();
     uiManager.getComponents().add(uiHand);
+    uiManager.getComponents().add(uiPlayers);
   }
   
   void tick(){
@@ -33,8 +42,6 @@ class Game{
   }
   
   void onMouseClick(){
-    if(uiHand.isClicked()){
-      uiManager.onMouseClick();
-    }
+    uiManager.onMouseClick();
   }
 }

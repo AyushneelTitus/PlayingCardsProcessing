@@ -10,7 +10,7 @@ void setup(){
 }
 
 void draw(){
-  //background(51);
+  background(51);
   game.tick();
   game.render();
 }
