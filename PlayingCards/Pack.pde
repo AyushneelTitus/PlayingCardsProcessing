@@ -2,7 +2,7 @@ String numberStrings[] = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J"
 String suitStrings[] = {"S", "C", "H", "D"};
 
 String getCardAsString(Card card) {
-  return (numberStrings[card.number] + " " + suitStrings[card.suit]);
+  return (numberStrings[card.number - 1] + " " + suitStrings[card.suit - 1]);
 }
 
 class Pack {

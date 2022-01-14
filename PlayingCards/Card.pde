@@ -1,8 +1,8 @@
 class Card{
-  int suit, number;
+  int number, suit;
   
-  Card(int suit, int number){
-    this.suit = suit;
+  Card(int number, int suit){
     this.number = number;
+    this.suit = suit;
   }
 }
