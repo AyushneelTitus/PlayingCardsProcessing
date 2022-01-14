@@ -1,3 +1,4 @@
+UiManager uiManager;
 UiHand uiHand;
 
 class Game{
@@ -19,18 +20,21 @@ class Game{
     pack.getCards().add(new Card(4, 10));
 
     uiHand.updateSize();
+    
+    uiManager = new UiManager();
+    uiManager.getComponents().add(uiHand);
   }
   
   void tick(){
   }
   
   void render(){
-    uiHand.render();
+    uiManager.render();
   }
   
   void onMouseClick(){
     if(uiHand.isClicked()){
-      uiHand.onMouseClick();
+      uiManager.onMouseClick();
     }
   }
 }
