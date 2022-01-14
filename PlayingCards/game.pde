@@ -3,7 +3,7 @@
 class Game{
   
   
-  void Game(){
+  Game(){
     //Game constructor. initialize variables.
   }
   
