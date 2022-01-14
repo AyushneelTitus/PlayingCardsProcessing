@@ -3,3 +3,7 @@ void test1(){
   
   println(getCardAsString(card));
 }
+
+void test2(){
+  
+}

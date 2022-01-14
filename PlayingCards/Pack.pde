@@ -9,6 +9,7 @@ class Pack {
   ArrayList<Card> cards;
 
   Pack() {
+    cards = new ArrayList<Card>();
   }
 
   ArrayList<Card> getCards() {
