@@ -24,8 +24,8 @@ class Game{
     uiPlayers.updateSize();
     
     pack.getCards().add(new Card(1, 1));
-    pack.getCards().add(new Card(3, 13));
-    pack.getCards().add(new Card(4, 10));
+    pack.getCards().add(new Card(13, 3));
+    pack.getCards().add(new Card(10, 4));
 
     uiHand.updateSize();
     

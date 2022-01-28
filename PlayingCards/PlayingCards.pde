@@ -1,3 +1,4 @@
+final boolean DEBUG = false;
 Game game;
 
 void setup(){
