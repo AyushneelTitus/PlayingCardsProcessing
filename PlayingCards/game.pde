@@ -1,4 +1,5 @@
 UiManager uiManager;
+PlayerManager playerManager;
 
 class Game{
   
@@ -14,7 +15,7 @@ class Game{
     Pack pack = new Pack();
     UiHand uiHand;
     uiHand = new UiHand(width / 2, height - 150, pack);
-    PlayerManager playerManager = new PlayerManager();
+    playerManager = new PlayerManager();
     playerManager.getPlayers().add(new Player(1, "Player1"));
     playerManager.getPlayers().add(new Player(2, "Player2"));
     playerManager.getPlayers().add(new Player(3, "Player3"));
