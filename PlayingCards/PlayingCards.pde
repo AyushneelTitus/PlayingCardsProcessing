@@ -42,7 +42,7 @@ int i = 0;
 
 void mousePressed(){
   i++;
-  gameClient.sendMessage(i);
+  gameClient.sendMessage("Hello");
   //game.onMouseClick();
   currentScene.onMouseClick();
 }

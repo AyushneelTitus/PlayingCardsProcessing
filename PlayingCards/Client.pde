@@ -15,8 +15,8 @@ class GameClient{
     }
   }
   
-  void sendMessage(int i){
-    client.write(id + "Hello" + i);
+  void sendMessage(String msg){
+    client.write(id + msg);
   }
   
   void end(){
