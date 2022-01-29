@@ -5,6 +5,9 @@ final boolean DEBUG = true;
 Game game;
 GameServer gameServer;
 GameClient gameClient;
+
+Scene currentScene, loginScene;
+
 void setup(){
   size(900, 600);
   game = new Game();
@@ -15,6 +18,8 @@ void setup(){
     gameServer = new GameServer(new Server(this, 5000));
   gameClient = new GameClient(new Client(this, "127.0.0.1", 5000));
   
+  loginScene = new LoginScene();
+  currentScene = loginScene;
   game.init();
   
   gameClient.connect();
@@ -22,8 +27,10 @@ void setup(){
 
 void draw(){
   background(51);
-  game.tick();
-  game.render();
+  //game.tick();
+  //game.render();
+  currentScene.tick();
+  currentScene.render();
   
   if(SERVER)
     gameServer.readAndBroadcast();
@@ -35,5 +42,6 @@ int i = 0;
 void mousePressed(){
   i++;
   gameClient.sendMessage(i);
-  game.onMouseClick();
+  //game.onMouseClick();
+  currentScene.onMouseClick();
 }
