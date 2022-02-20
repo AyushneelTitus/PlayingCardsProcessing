@@ -1,3 +1,18 @@
+void createLobby(){
+  game.playerManager.players.add(game.playerManager.self);
+}
+
+void getLobby(){
+  gameClient.sendMessage("1");
+}
+
+void addPlayers(String data){
+  //String.split(data, ';');
+}
+
+
+//------------------//
+
 interface Action{
   void execute(String data);
 }
@@ -23,5 +38,6 @@ class Protocol{
 ArrayList<Protocol> protocols;
 
 void initProtocols(){
-  
+  // protocol list
+  //
 }

@@ -34,3 +34,11 @@ class GameServer{
     }
   }
 }
+
+void startServer(){
+  gameServer = new GameServer(new Server(this, 5000));
+}
+
+void closeServer(){
+  gameServer.end();
+}

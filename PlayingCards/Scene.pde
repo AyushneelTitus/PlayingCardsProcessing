@@ -1,47 +1,55 @@
-class Scene{
+class Scene {
   UiManager uiManager;
-  
-  Scene(){
+
+  Scene() {
     uiManager = new UiManager();
     init();
   }
-  
-  void init(){}
-  
-  void tick(){
+
+  void init() {
+  }
+
+  void tick() {
     uiManager.tick();
   }
-  
-  void render(){
+
+  void render() {
     uiManager.render();
   }
-  
-  void onMouseClick(){
+
+  void onMouseClick() {
     uiManager.onMouseClick();
   }
 }
 
-class LoginScene extends Scene{
-  LoginScene(){
+class LoginScene extends Scene {
+  LoginScene() {
     super();
   }
-  
-  void init(){
-    uiManager.getComponents().add(new UiButton(200, 300, 90, 40, "Create", new Clicker(){
-      public void onClick(){
+
+  void init() {
+    uiManager.getComponents().add(new UiButton(200, 300, 90, 40, "Create", new Clicker() {
+      public void onClick() {
         println("create game");
-      }
-    }));
-    
-    uiManager.getComponents().add(new UiButton(400, 300, 90, 40, "Join", new Clicker(){
-      public void onClick(){
-        println("join game");
+        isServer = true;
         currentScene = lobbyScene;
+        currentScene.init();
       }
-    }));
+    }
+    ));
+
+    uiManager.getComponents().add(new UiButton(400, 300, 90, 40, "Join", new Clicker() {
+      public void onClick() {
+        println("join game");
+        isServer = false;
+        currentScene = lobbyScene;
+        currentScene.init();
+      }
+    }
+    ));
   }
-  
-  void render(){
+
+  void render() {
     //title
     fill(255);
     textSize(24);
@@ -50,24 +58,43 @@ class LoginScene extends Scene{
   }
 }
 
-class LobbyScene extends Scene{
-  LobbyScene(){
+class LobbyScene extends Scene {
+  UiPlayers uiPlayers;
+  UiButton startButton;
+  
+  LobbyScene() {
     super();
   }
-  
-  void init(){
-    uiManager.getComponents().add(new UiPlayers(width / 2, 100, playerManager));
-    uiManager.getComponents().add(new UiButton(300, 300, 90, 40, "Start", new Clicker(){
-      public void onClick(){
+
+  void init() {
+    // ui
+    uiPlayers = new UiPlayers(width / 2, 100, game.playerManager);
+    startButton = new UiButton(300, 300, 90, 40, "Start", new Clicker() {
+      public void onClick() {
         println("start game");
       }
-    }));
-    
+    }
+    );
+    uiManager.getComponents().add(uiPlayers);
+    uiManager.getComponents().add(startButton);
+
   }
-  
-  void render(){
+
+  void transitIn(){
+    // get lobby details;
+    if (isServer) {
+      startServer();
+      createLobby();
+    } else {
+      startClient();
+      getLobby();
+      startButton.isEnabled = false;
+    }
+  }
+
+  void render() {
     //title
-    
+
     //players
     super.render();
   }

@@ -39,3 +39,7 @@ class GameClient{
     client.write("0");
   }
 }
+
+void startClient(){
+  
+}

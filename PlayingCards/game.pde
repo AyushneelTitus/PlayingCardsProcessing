@@ -1,8 +1,7 @@
-UiManager uiManager;
-PlayerManager playerManager;
+//UiManager uiManager;
 
 class Game{
-  
+  PlayerManager playerManager;
   
   Game(){
     //Game constructor. initialize variables.
@@ -11,7 +10,10 @@ class Game{
   void init(){
     //initialize game
     println("starting game");
-//    test1();
+    
+    playerManager = new PlayerManager();
+    
+    /*
     Pack pack = new Pack();
     UiHand uiHand;
     uiHand = new UiHand(width / 2, height - 150, pack);
@@ -33,6 +35,7 @@ class Game{
     uiManager = new UiManager();
     uiManager.getComponents().add(uiHand);
     uiManager.getComponents().add(uiPlayers);
+    */
   }
   
   void tick(){
