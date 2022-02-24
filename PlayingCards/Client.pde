@@ -40,6 +40,6 @@ class GameClient{
   }
 }
 
-void startClient(){
-  
+void startClient(){ //<>//
+  gameClient = new GameClient(new Client(this, "127.0.0.1", 5000));
 }

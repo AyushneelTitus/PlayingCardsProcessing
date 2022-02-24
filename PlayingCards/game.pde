@@ -38,14 +38,4 @@ class Game{
     */
   }
   
-  void tick(){
-  }
-  
-  void render(){
-    uiManager.render();
-  }
-  
-  void onMouseClick(){
-    uiManager.onMouseClick();
-  }
 }

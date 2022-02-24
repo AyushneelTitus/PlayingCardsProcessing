@@ -8,6 +8,12 @@ class Scene {
 
   void init() {
   }
+  
+  void transitIn(){
+  }
+  
+  void transitOut(){
+  }
 
   void tick() {
     uiManager.tick();
@@ -33,7 +39,7 @@ class LoginScene extends Scene {
         println("create game");
         isServer = true;
         currentScene = lobbyScene;
-        currentScene.init();
+        currentScene.transitIn();
       }
     }
     ));
@@ -43,7 +49,7 @@ class LoginScene extends Scene {
         println("join game");
         isServer = false;
         currentScene = lobbyScene;
-        currentScene.init();
+        currentScene.transitIn();
       }
     }
     ));
@@ -87,8 +93,9 @@ class LobbyScene extends Scene {
       createLobby();
     } else {
       startClient();
-      getLobby();
       startButton.isEnabled = false;
+      println("Start button disabled");
+      getLobby();
     }
   }
 

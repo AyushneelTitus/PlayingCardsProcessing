@@ -23,7 +23,7 @@ class UiPlayers extends UiComponent{
     textSize(14);
     translate(pos.x - sz.x / 2, pos.y - sz.y / 2);
     for(int i = 0; i < playerManager.getPlayers().size(); i++){
-      if(playerManager.getPlayers().get(i).self){
+      if(playerManager.getPlayers().get(i) == playerManager.self){
         continue;
       }
       rect(i * playerW, 0, 20, playerH);

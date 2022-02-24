@@ -26,7 +26,8 @@ class UiButton extends UiComponent{
   }
   
   void onMouseClick(){
-    if(isEnabled)
+    if(isEnabled){
       clicker.onClick();
+    }
   }
 }
