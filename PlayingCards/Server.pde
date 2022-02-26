@@ -44,7 +44,6 @@ class GameServer{
           for(Player p : game.playerManager.players){
             msg += p.id + ",P," + p.getPlayerAsString() + ";";
           }
-          println("Server:msg = " + msg);
           server.write(msg);
           break;
         

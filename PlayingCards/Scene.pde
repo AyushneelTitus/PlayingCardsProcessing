@@ -122,6 +122,7 @@ class LobbyScene extends Scene {
     else {
       gameClient.readMessage();
     }
+    uiPlayers.updateSize();
   }
 
   void render() {
