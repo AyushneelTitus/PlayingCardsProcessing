@@ -43,3 +43,7 @@ class GameClient{
 void startClient(){ //<>//
   gameClient = new GameClient(new Client(this, "127.0.0.1", 5000));
 }
+
+void closeClient(){
+  gameClient.end();
+}
