@@ -19,4 +19,8 @@ class Player {
   Pack getHand() {
     return hand;
   }
+  
+  String getPlayerAsString(){
+    return (id + "," + name);
+  }
 }

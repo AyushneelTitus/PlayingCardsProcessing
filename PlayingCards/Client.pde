@@ -10,7 +10,9 @@ class GameClient{
   
   void readMessage(){
     if(client.available() > 0){
-      String data = client.readString();
+      String data = client.readStringUntil(';');
+      //println("msg = " + data);
+      data = data.substring(0,data.length() - 1);
       processMessage(data);
     }
   }
@@ -26,18 +28,20 @@ class GameClient{
   
   void processMessage(String data){
     if(data.charAt(0) != '0'){
-      println(data);
+      processMessageCmn(data);
     }
     else if(id == 0){
-      id = Integer.parseInt(data);
+      String[] args = split(data, ',');
+      print("id:" + args[1]);
+      id = Integer.parseInt(args[1]);
       println("Connected. My id is : " + id);
+      game.playerManager.addSelf(new Player(id, "Player" + id, true));
+      sendMessage(id + ",p," + id + ",Player" + id + ";");
+      println("join request sent.");
     }
   }
   
-  void connect(){
-    println("Client: Connecting...");
-    client.write("0");
-  }
+
 }
 
 void startClient(){ //<>//

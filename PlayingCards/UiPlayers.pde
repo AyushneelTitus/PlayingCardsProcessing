@@ -15,6 +15,7 @@ class UiPlayers extends UiComponent{
     if(DEBUG){
       line(pos.x - 100, pos.y, pos.x + 100, pos.y);
       line(pos.x, pos.y - 100, pos.x, pos.y + 100);
+      rect(0, 0, 40, 40);
     }
     
     pushMatrix();
@@ -22,10 +23,15 @@ class UiPlayers extends UiComponent{
     fill(255);
     textSize(14);
     translate(pos.x - sz.x / 2, pos.y - sz.y / 2);
+    
+    if(playerManager.getPlayers().size() == 0){
+      rect(0, 0, 50, 40);
+    }
     for(int i = 0; i < playerManager.getPlayers().size(); i++){
       if(playerManager.getPlayers().get(i) == playerManager.self){
-        continue;
+        //continue;
       }
+      String p = playerManager.getPlayers().get(i).name;
       rect(i * playerW, 0, 20, playerH);
       text(playerManager.getPlayers().get(i).name, i * playerW + 22, playerH - 4);
     }

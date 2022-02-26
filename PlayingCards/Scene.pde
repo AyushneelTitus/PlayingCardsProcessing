@@ -80,13 +80,15 @@ class LobbyScene extends Scene {
         println("start game");
       }
     });
-    backButton = new UiButton(400, 300, 90, 40, "Start", new Clicker() {
+    backButton = new UiButton(400, 300, 90, 40, "Back", new Clicker() {
       public void onClick() {
-        println("start game");
+        currentScene.transitOut();
+        currentScene = loginScene;
       }
     });
     uiManager.getComponents().add(uiPlayers);
     uiManager.getComponents().add(startButton);
+    uiManager.getComponents().add(backButton);
 
   }
 
@@ -100,15 +102,25 @@ class LobbyScene extends Scene {
       startClient();
       startButton.isEnabled = false;
       println("Start button disabled");
-      getLobby();
+      connect();
     }
   }
   
   void transitOut(){
+    game.playerManager.players.clear();
     if (isServer) {
       closeServer();
     } else {
       closeClient();
+    }
+  }
+  
+  void tick() {
+    if(isServer){
+      gameServer.readAndBroadcast();
+    }
+    else {
+      gameClient.readMessage();
     }
   }
 
