@@ -18,7 +18,8 @@ class GameServer{
   }
   
   void sendMessage(String msg){
-    server.write("0," + msg + ";");
+    server.write("1," + msg + ";");
+    processMessageCmn("9," + msg);
   }
   
   void end(){
@@ -43,7 +44,9 @@ class GameServer{
       
       switch(args[1]){
         case "s":
-          server.write("0,S;");
+          println("sending start message");
+          server.write("1,S;");
+          processMessageCmn("9,S");
           dealCards();
           break;
         

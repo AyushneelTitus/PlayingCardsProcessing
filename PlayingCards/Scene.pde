@@ -137,19 +137,36 @@ class LobbyScene extends Scene {
 class GameScene extends Scene {
   UiPlayers uiPlayers;
   UiButton backButton;
+  UiBoard uiBoard;
   UiHand uiHand;
   
   void init(){
     // TODO: init ui
+    uiPlayers = new UiPlayers(width / 2, 100, game.playerManager);
+    backButton = new UiButton(100, 50, 90, 40, "Back", new Clicker() {
+      public void onClick() {
+        //currentScene.transitOut();
+        endGame();
+        currentScene = lobbyScene;
+        
+        currentScene.transitOut();
+        currentScene = loginScene;
+      }
+    });
+    uiBoard = new UiBoard(game.board);
+    uiHand = new UiHand(width / 2, height - 150, null);
     
-    //uiManager.components.add(uiPlayers);
-    //uiManager.components.add(backButton);
-    //uiManager.components.add(uiHand);
+    uiManager.components.add(uiPlayers);
+    uiManager.components.add(backButton);
+    uiManager.components.add(uiBoard);
+    uiManager.components.add(uiHand);
   }
   
   void transitIn(){
     //startGame
     println("Starting game");
+    uiHand.pack = game.playerManager.self.hand;
+    println("Setting hand");
     //create deck
     //shuffle
     //distribute cards
@@ -169,5 +186,6 @@ class GameScene extends Scene {
       gameClient.readMessage();
     }
     uiPlayers.updateSize();
+    uiHand.updateSize();
   }
 }

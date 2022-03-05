@@ -4,11 +4,12 @@ void createLobby(){
 
   void connect(){
     println("Client: Connecting...");
-    gameClient.sendMessage("0;");
+    gameClient.sendMessage("0");
   }
 
-void startGame(){
+void _startGame(){
   currentScene = gameScene;
+  currentScene.transitIn();
 }
 
 void endGame(){
@@ -18,14 +19,16 @@ void endGame(){
 
 void dealCards(){
   game.board.createDeck();
-  game.board.shuffleDeck();
+  //game.board.shuffleDeck();
   
   String msg = "";
   int pId = 0;
-  for (int i = 0; i < 52; i++){
+  for (int i = 0; i < 8; i++){
     Card c = game.board.deck.cards.get(i);
-    msg += "C,B,0,P," + pId + "," + c.suit + "," + c.number;
+    msg = "C,B,0,P," + (pId + 1) + "," + c.suit + "," + c.number;
     gameServer.sendMessage(msg);
+    pId++;
+    pId %= game.playerManager.players.size();
   }
 }
 
@@ -34,17 +37,20 @@ void addPlayers(String data){
 }
 
 void processMessageCmn(String data){
+  println(data);
   String[] args = split(data, ',');
   int msgrId = Integer.parseInt(args[0]);
-  
+  println("msgrId=" + msgrId);
   if(game.playerManager.self == null)
   {
     println("Player not found.");
     return;
   }
   if(msgrId == game.playerManager.self.id){
+    println("matches self id.");
     return;
   }
+  println(args[1]);
   
   int playerId;
   switch(args[1]){
@@ -52,25 +58,29 @@ void processMessageCmn(String data){
       int id = Integer.parseInt(args[3]);
       int suit = Integer.parseInt(args[6]);
       int num = Integer.parseInt(args[7]);
-      if(args[2] == "B"){
+      if(args[2].equals("B")){
         game.board.removeCardFrom(id, suit, num);
-      }else if(args[2] == "P"){
+      }else if(args[2].equals("P")){
         game.playerManager.removeCardFrom(id, suit, num);
-      }
+      }else
+        println("noCardsRemoved");
       
       id = Integer.parseInt(args[5]);
-      if(args[4] == "B"){
+      if(args[4].equals("B")){
         game.board.addCardTo(id, suit, num);
-      }else if(args[4] == "P"){
+      }else if(args[4].equals("P")){
+        println("/add card to player");
         game.playerManager.addCardTo(id, suit, num);
-      }
+      } else
+        println("noCardsAdded");
       break;
     
     case "E":
-      gameEnd();
+      endGame();
     
     case "S":
-      startGame();
+      println("startGame called");
+      _startGame();
       break;
     
     case "P":

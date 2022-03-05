@@ -18,7 +18,7 @@ class GameClient{
   }
   
   void sendMessage(String msg){
-    client.write(id + msg);
+    client.write(id + msg + ";");
   }
   
   void end(){
@@ -36,7 +36,7 @@ class GameClient{
       id = Integer.parseInt(args[1]);
       println("Connected. My id is : " + id);
       game.playerManager.addSelf(new Player(id, "Player" + id, true));
-      sendMessage(id + ",p," + id + ",Player" + id + ";");
+      sendMessage(id + ",p," + id + ",Player" + id);
       println("join request sent.");
     }
   }

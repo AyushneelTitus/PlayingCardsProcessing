@@ -20,7 +20,7 @@ class Board {
       for (int j = 0; j < 13; j++) {
         int idx = i * 13 + j;
         int rand = floor(random(52));
-        print(rand + ",");
+        //print(rand + ",");
         Card c = deck.cards.remove(rand);
         deck.cards.add(idx, c);
       }

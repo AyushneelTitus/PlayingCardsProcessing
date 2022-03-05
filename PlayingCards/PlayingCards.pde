@@ -17,6 +17,7 @@ void setup(){
   game.init();
   loginScene = new LoginScene();
   lobbyScene = new LobbyScene();
+  gameScene = new GameScene();
   currentScene = loginScene;
   
 }
