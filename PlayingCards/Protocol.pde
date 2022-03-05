@@ -8,8 +8,12 @@ void createLobby(){
   }
 
 void startGame(){
-  gameServer.sendMessage("S");
   currentScene = gameScene;
+}
+
+void endGame(){
+  game.reset();
+  currentScene = lobbyScene;
 }
 
 void dealCards(){
@@ -63,7 +67,7 @@ void processMessageCmn(String data){
       break;
     
     case "E":
-      game.reset();
+      gameEnd();
     
     case "S":
       startGame();

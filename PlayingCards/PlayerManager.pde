@@ -42,4 +42,10 @@ class PlayerManager{
     }
     getPlayerById(id).hand.nCards--;
   }
+  
+  void reset(){
+    for(Player p : players){
+      p.hand.cards.clear();
+    }
+  }
 }

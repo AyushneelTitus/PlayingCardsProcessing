@@ -41,7 +41,7 @@ class Game{
   
   void reset(){
     board.reset();
+    playerManager.reset();
   }
-
   
 }
