@@ -23,4 +23,23 @@ class PlayerManager{
     }
     return null;
   }
+  
+  void addCardTo(int id, int suit, int num){
+    if(self.id == id){
+      self.hand.cards.add(new Card(num, suit));
+    }
+    getPlayerById(id).hand.nCards++;
+  }
+  
+  void removeCardFrom(int id, int suit, int num){
+    if(self.id == id){
+      for(Card c : self.hand.cards){
+        if(c.suit == suit && c.number == num){
+          self.hand.cards.remove(c);
+          break;
+        }
+      }
+    }
+    getPlayerById(id).hand.nCards--;
+  }
 }

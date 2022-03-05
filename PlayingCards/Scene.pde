@@ -78,6 +78,7 @@ class LobbyScene extends Scene {
     startButton = new UiButton(200, 300, 90, 40, "Start", new Clicker() {
       public void onClick() {
         println("start game");
+        gameServer.processMessage("1,s;");
       }
     });
     backButton = new UiButton(400, 300, 90, 40, "Back", new Clicker() {
@@ -130,5 +131,43 @@ class LobbyScene extends Scene {
 
     //players
     super.render();
+  }
+}
+
+class GameScene extends Scene {
+  UiPlayers uiPlayers;
+  UiButton backButton;
+  UiHand uiHand;
+  
+  void init(){
+    // TODO: init ui
+    
+    //uiManager.components.add(uiPlayers);
+    //uiManager.components.add(backButton);
+    //uiManager.components.add(uiHand);
+  }
+  
+  void transitIn(){
+    //startGame
+    println("Starting game");
+    //create deck
+    //shuffle
+    //distribute cards
+    //announce turn
+  }
+  
+  void transitOut(){
+    //clear player hand data
+    //clear board data
+  }
+  
+  void tick() {
+    if(isServer){
+      gameServer.readAndBroadcast();
+    }
+    else {
+      gameClient.readMessage();
+    }
+    uiPlayers.updateSize();
   }
 }

@@ -5,7 +5,7 @@ Game game;
 GameServer gameServer;
 GameClient gameClient;
 
-Scene currentScene, loginScene, lobbyScene;
+Scene currentScene, loginScene, lobbyScene, gameScene;
 boolean isServer = false;
 
 void setup(){

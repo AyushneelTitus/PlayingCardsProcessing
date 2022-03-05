@@ -7,9 +7,11 @@ String getCardAsString(Card card) {
 
 class Pack {
   ArrayList<Card> cards;
+  int nCards;
 
   Pack() {
     cards = new ArrayList<Card>();
+    nCards = 0;
   }
 
   ArrayList<Card> getCards() {

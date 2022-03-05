@@ -2,6 +2,7 @@
 
 class Game{
   PlayerManager playerManager;
+  Board board;
   
   Game(){
     //Game constructor. initialize variables.
@@ -12,7 +13,7 @@ class Game{
     println("starting game");
     
     playerManager = new PlayerManager();
-    
+    board = new Board();
     /*
     Pack pack = new Pack();
     UiHand uiHand;
@@ -37,5 +38,10 @@ class Game{
     uiManager.getComponents().add(uiPlayers);
     */
   }
+  
+  void reset(){
+    board.reset();
+  }
+
   
 }

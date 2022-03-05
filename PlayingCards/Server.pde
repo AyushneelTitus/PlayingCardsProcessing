@@ -17,13 +17,17 @@ class GameServer{
     }
   }
   
+  void sendMessage(String msg){
+    server.write("0," + msg + ";");
+  }
+  
   void end(){
     nclients = 1;
     server.stop();
   }
 
   void processMessage(String data){
-    println("Server: message received");
+    //println("Server: message received");
     data = data.substring(0,data.length() - 1);
     
     if(data.charAt(0) == '0'){
@@ -38,6 +42,11 @@ class GameServer{
       String msg = "";
       
       switch(args[1]){
+        case "s":
+          server.write("0,S;");
+          dealCards();
+          break;
+        
         case "p":
           int playerId = Integer.parseInt(args[2]);
           game.playerManager.players.add(new Player(playerId, args[3]));

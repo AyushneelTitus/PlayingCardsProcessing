@@ -40,4 +40,36 @@ class Board {
     }
     println();
   }
+  
+    void addCardTo(int id, int suit, int num){
+    if(id == 1){
+      main.cards.add(new Card(num, suit));
+      main.nCards++;
+    }
+    else if(id == 2){
+      side.cards.add(new Card(num, suit));
+      side.nCards++;
+    }
+  }
+  
+  void removeCardFrom(int id, int suit, int num){
+    if(id == 1){
+      for(Card c : main.cards){
+        if(c.suit == suit && c.number == num){
+          main.cards.remove(c);
+          main.nCards++;
+          break;
+        }
+      }
+    }
+    else if(id == 2){
+      for(Card c : side.cards){
+        if(c.suit == suit && c.number == num){
+          side.cards.remove(c);
+          side.nCards++;
+          break;
+        }
+      }
+    }
+  }
 }
